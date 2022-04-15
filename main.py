@@ -9,7 +9,7 @@ from typing import Optional, List
 
 from pydantic import EmailStr, Field
 from pydantic import BaseModel 
-from pydantic import Optional 
+
 #FastApi 
 
 from fastapi import FastAPI
@@ -19,9 +19,8 @@ app = FastAPI()
 
 #Models 
 class UserBase (BaseModel):
-    user_id: UUID = Field (...),
+    user_id: UUID = Field (...)
     email: EmailStr = Field(...)
-    
 
 class UserLogin(UserBase):
     password: str = Field (
@@ -63,11 +62,9 @@ class Tweet(BaseModel):
 
 # Path Operations 
 
-@app.get(path = "/")
-def home():
-    return {"Twitter API": "Working!"}
-
 ## Users
+
+###Register a user 
 
 @app.post (
     path = "/signup",
@@ -76,9 +73,12 @@ def home():
     summary= "Register a User",
     tags = ["Users"]
 )
+
 def signup ():
     pass 
  
+###Login a user
+
 @app.post (
     path = "/Login",
     response_model = User,
@@ -86,8 +86,11 @@ def signup ():
     summary= "Login a User",
     tags = ["Users"]
 )
+
 def login ():
     pass 
+
+###Show all user
 
 @app.get (
     path = "/users",
@@ -96,8 +99,11 @@ def login ():
     summary= "Show all users",
     tags = ["Users"]
 )
+
 def show_all_users ():
     pass 
+
+###Show a user
 
 @app.get (
     path = "/users/{user_id}",
@@ -106,8 +112,11 @@ def show_all_users ():
     summary= "Show a User",
     tags = ["Users"]
 )
+
 def show_a_user ():
     pass 
+
+###Delete a user
 
 @app.delete (
     path = "/users/{user_id}delete",
@@ -116,8 +125,11 @@ def show_a_user ():
     summary= "Delete a User",
     tags = ["Users"]
 )
+
 def delete_a_user ():
     pass 
+
+###Update a user
 
 @app.put (
     path = "/users/{user_id}update",
@@ -126,14 +138,78 @@ def delete_a_user ():
     summary= "Update a User",
     tags = ["Users"]
 )
-def delete_a_user ():
+
+def update_a_user ():
     pass 
-
-
-
-
 
 
 
 ##Tweets
 
+###Show all Tweets 
+
+
+@app.get(
+    path = "/",
+    response_model = List[Tweet],
+    status_code = status.HTTP_200_OK,
+    summary= "Show all tweets",
+    tags = ["Tweets"]
+)
+
+def home():
+    return {"Twitter API": "Working!"}
+
+###Post a tweet 
+
+@app.post (
+    path = "/post",
+    response_model = Tweet,
+    status_code = status.HTTP_201_CREATED,
+    summary= "Post a tweet",
+    tags = ["Tweets"]
+
+)
+
+def post():
+    pass
+
+###Show a tweet 
+
+@app.get (
+    path = "/tweets/{tweet_id}",
+    response_model = Tweet,
+    status_code = status.HTTP_200_OK,
+    summary= "Show a tweet",
+    tags = ["Tweets"]
+
+)
+
+def show_a_tweet():
+    pass
+
+###Delete a tweet
+
+@app.delete (
+    path = "/tweets/{tweet_id}/delete",
+    response_model = Tweet,
+    status_code = status.HTTP_200_OK,
+    summary= "Delete a tweet",
+    tags = ["Tweets"]
+)
+
+def delete_a_tweet():
+    pass
+
+###Update a tweet
+
+@app.put (
+    path = "/tweets/{tweet_id}/update",
+    response_model = Tweet,
+    status_code = status.HTTP_200_OK,
+    summary= "Update a tweet",
+    tags = ["Tweets"]
+)
+
+def update_a_tweet():
+    pass
