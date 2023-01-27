@@ -1,11 +1,11 @@
-#User Management API
+# User Management API
 This API allows for the management of users, including registration, login, showing all users, showing a specific user, deleting a user, and updating a user.
 
-##Models
+## Models
 **UserBase**
 The UserBase model contains the basic information for a user, including a user ID and email address.
 
-##Copy code
+## Copy code
 class UserBase (BaseModel):
     user_id: UUID = Field (...)
     email: EmailStr = Field(...)
@@ -105,5 +105,5 @@ The functionality for this route is not implemented in the code.
 **/tweets/{tweet_id}/update:** This route allows a user to update a tweet by sending a PUT request with the updated tweet 
 content in the request body and including the tweet's ID in the path. The functionality for this route is not implemented in the code.
 
-##It also uses the open function to read and write a json file named users.json to store the users' data.
+## It also uses the open function to read and write a json file named users.json to store the users' data.
 
