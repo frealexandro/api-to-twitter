@@ -71,7 +71,7 @@ class Tweet(BaseModel):
     update_at: Optional[datetime] = Field (default=None)
     by: User = Field(...) 
 
-##User Routes
+## User Routes
 
 **/signup:** This route allows users to register for the app by sending a POST request with a JSON payload containing the user's information in the request body.
 The route returns a JSON object with the basic user information, including the user's ID, email, first name, last name, and birthdate.
